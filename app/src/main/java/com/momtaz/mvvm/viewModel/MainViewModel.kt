@@ -3,11 +3,12 @@ package com.momtaz.mvvm.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.momtaz.mvvm.model.JokeRepository
 import com.momtaz.mvvm.model.JokeRespons
-import com.momtaz.mvvm.network.API
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
+    private val repository = JokeRepository()
     val joke = MutableLiveData<JokeRespons>()
 
     init {
@@ -16,7 +17,7 @@ class MainViewModel : ViewModel() {
 
     private fun getRandomJoke() {
        viewModelScope.launch {
-          joke.postValue( API.apiServes?.getRandomJoke() )
+          joke.postValue( repository.getRandomJoke())
        }
     }
 

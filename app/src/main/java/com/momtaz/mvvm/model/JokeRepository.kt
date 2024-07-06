@@ -1,4 +1,7 @@
 package com.momtaz.mvvm.model
 
-class jokeRepository {
+import com.momtaz.mvvm.network.API
+
+class JokeRepository {
+    suspend fun getRandomJoke() = API.apiServes?.getRandomJoke()
 }
